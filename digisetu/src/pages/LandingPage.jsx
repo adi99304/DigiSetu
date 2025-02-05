@@ -40,24 +40,6 @@ export default function LandingPage() {
           <button className="btn guest" onClick={handleStartAsGuest}>🔹 Start as Guest</button>
           <p className="note">Join 10,000+ learners today</p>
         </div>
-
-        {/* Courses */}
-        <div className="courses">
-          <div className="course-card">
-            <FaMobileAlt className="course-icon" />
-            <div>
-              <h3>UPI Tutorials</h3>
-              <p>20 min • Beginner</p>
-            </div>
-          </div>
-          <div className="course-card">
-            <FaRegFileAlt className="course-icon" />
-            <div>
-              <h3>Form Filling</h3>
-              <p>30 min • Intermediate</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

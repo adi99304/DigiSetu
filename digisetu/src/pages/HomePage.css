@@ -1,0 +1,111 @@
+.home-page .search-bar {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.home-page .search-bar form {
+    display: inline-block;
+}
+
+.home-page .search-bar input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.home-page .search-bar button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+}
+
+.home-page .search-bar button:hover {
+    background-color: #555;
+}
+
+.home-page .carousel-container {
+    margin: 40px 0;
+}
+
+.home-page .categories, .home-page .courses, .home-page .languages {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.home-page .categories h2, .home-page .courses h2, .home-page .languages h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.home-page .category-cards, .home-page .course-cards, .home-page .language-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.home-page .category-card, .home-page .course-card, .home-page .language-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.home-page .category-icon, .home-page .course-icon, .home-page .language-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.home-page .category-card h3, .home-page .course-card h3, .home-page .language-card h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.home-page .course-card p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.home-page .testimonials {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.home-page .testimonials h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.home-page .testimonial-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px auto;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.home-page .testimonial-card p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.home-page .footer {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
