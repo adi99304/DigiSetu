@@ -1,8 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { FaGoogle, FaRegFileAlt, FaMobileAlt } from "react-icons/fa";
-import "./LandingPage.css"; // Import CSS" />; // Import CSS
+import "./LandingPage.css"; // Import CSS
 
 export default function LandingPage() {
+  const navigate = useNavigate();
+
+  const handleStartAsGuest = () => {
+    navigate('/home');
+  };
+
   return (
     <div className="container">
       <div className="card">
@@ -30,7 +37,7 @@ export default function LandingPage() {
           <button className="btn google">
             <FaGoogle className="icon-btn" /> Continue with Google
           </button>
-          <button className="btn guest">🔹 Start as Guest</button>
+          <button className="btn guest" onClick={handleStartAsGuest}>🔹 Start as Guest</button>
           <p className="note">Join 10,000+ learners today</p>
         </div>
 
