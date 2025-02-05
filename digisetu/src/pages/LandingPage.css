@@ -1,0 +1,189 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+  }
+  
+  /* Fullscreen Mobile View */
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f3f4f6;
+    padding: 20px;
+  }
+  
+  /* Main Card */
+  .card {
+    width: 100%;
+    max-width: 430px; /* iPhone 14 Pro Max Width */
+    height: 85vh;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .title-secondary {
+    color: #333;
+  }
+  
+  .icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  /* Subtitle */
+  .subtitle {
+    color: gray;
+    font-size: 15px;
+    margin-top: 6px;
+  }
+  
+  /* Welcome Banner */
+  .banner {
+    background-color: #007bff;
+    color: white;
+    padding: 16px;
+    border-radius: 12px;
+    margin: 10px 0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .banner h2 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  /* Buttons */
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .btn {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn.google {
+    background: white;
+    border: 1px solid gray;
+    color: gray;
+  }
+  
+  .btn.google:hover {
+    background: #f0f0f0;
+  }
+  
+  .btn.guest {
+    background: #007bff;
+    color: white;
+  }
+  
+  .btn.guest:hover {
+    background: #0056b3;
+  }
+  
+  .icon-btn {
+    margin-right: 8px;
+    font-size: 18px;
+  }
+  
+  .note {
+    font-size: 13px;
+    color: gray;
+  }
+  
+  /* Courses */
+  .courses {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .course-card {
+    background: white;
+    flex: 1;
+    padding: 14px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .course-icon {
+    font-size: 22px;
+    color: #007bff;
+  }
+  
+  .course-card h3 {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .course-card p {
+    font-size: 12px;
+    color: gray;
+  }
+  
+  /* 📱 Mobile Optimization for iPhone 14 Pro Max */
+  @media (max-width: 430px) {
+    .container {
+      padding: 10px;
+    }
+  
+    .card {
+      height: 90vh;
+      border-radius: 20px;
+    }
+  
+    .banner {
+      padding: 20px;
+    }
+  
+    .btn {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .courses {
+      flex-direction: column;
+    }
+  }
+  span.waving-hand {
+    animation-name: wave-animation;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+    transform-origin: 70% 70%;
+    display:inline-block;
+  }  
