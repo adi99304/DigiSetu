@@ -4,8 +4,8 @@ import { FaMobileAlt, FaRegFileAlt, FaLanguage } from 'react-icons/fa';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import NavBar from '../components/NavBar';
+import Chatbot from './Chatbot';
 import './HomePage.css';
-// import carouselImage from '../assets/carousel-image.jpg'; // Import the image
 
 const categories = [
   { name: "ChatGPT", learners: "4M+" },
@@ -58,25 +58,26 @@ const courses = [
 ];
 
 const CourseCard = ({ course }) => (
-  <div className="bg-white rounded-lg shadow-md p-4 w-72">
-    <img src={course.img} alt={course.title} className="w-full h-40 rounded-md" />
-    <h3 className="text-lg font-semibold mt-2">{course.title}</h3>
-    <p className="text-gray-600 text-sm">{course.instructor}</p>
-    <div className="flex items-center mt-2">
-      <span className="text-yellow-500 text-sm font-bold">{course.rating} ★</span>
-      <span className="text-gray-500 text-xs ml-1">({course.reviews})</span>
+  <div className="course-card">
+    <img src={course.img} alt={course.title} className="course-image" />
+    <h3 className="course-title">{course.title}</h3>
+    <p className="course-instructor">{course.instructor}</p>
+    <div className="course-rating">
+      <span className="rating">{course.rating} ★</span>
+      <span className="reviews">({course.reviews})</span>
     </div>
-    <div className="flex items-center mt-2">
-      <span className="text-lg font-bold text-green-600">{course.price}</span>
-      <span className="text-gray-400 text-sm line-through ml-2">{course.originalPrice}</span>
+    <div className="course-price">
+      <span className="current-price">{course.price}</span>
+      <span className="original-price">{course.originalPrice}</span>
     </div>
-    {course.bestseller && <span className="text-xs bg-yellow-300 px-2 py-1 rounded mt-2 inline-block">Bestseller</span>}
+    {course.bestseller && <span className="bestseller">Bestseller</span>}
   </div>
 );
 
 const HomePage = () => {
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState('');
+    const [showChatbot, setShowChatbot] = useState(false);
 
     const handleStart = () => {
         // Logic for starting the app can be added here
@@ -91,6 +92,18 @@ const HomePage = () => {
 
     const goToTutorialPage = () => {
         navigate('/tutorial');
+    };
+
+    const goToLearnPage = () => {
+        navigate('/learn');
+    };
+
+    const goToQuizPage = () => {
+        navigate('/quiz');
+    };
+
+    const toggleChatbot = () => {
+        setShowChatbot(!showChatbot);
     };
 
     return (
@@ -126,10 +139,7 @@ const HomePage = () => {
                         <img src="https://via.placeholder.com/800x300" alt="Slide 3" />
                         <p className="legend">Slide 3</p>
                     </div>
-                    {/* <div>
-                        <img src={carouselImage} alt="Your Image" />
-                        <p className="legend">Your Image</p>
-                    </div> */}
+
                 </Carousel>
             </div>
 
@@ -175,10 +185,22 @@ const HomePage = () => {
                 </div>
             </div>
 
-            {/* Go to Tutorial Page Button */}
-            <div className="tutorial-button-container">
-                <button onClick={goToTutorialPage} className="tutorial-button">Go to Tutorial Page</button>
+            {/* Navigation Buttons */}
+            <div className="navigation-buttons">
+                <button onClick={goToTutorialPage} className="nav-button">Go to Tutorial Page</button>
+                <button onClick={goToLearnPage} className="nav-button">Go to Learn Page</button>
+                <button onClick={goToQuizPage} className="nav-button">Go to Quiz Page</button>
             </div>
+
+            {/* Chatbot Toggle Button */}
+            <div className="chatbot-toggle">
+                <button onClick={toggleChatbot} className="chatbot-button">
+                    {showChatbot ? 'Hide Chatbot' : 'Show Chatbot'}
+                </button>
+            </div>
+
+            {/* Chatbot */}
+            {showChatbot && <Chatbot />}
 
             {/* Testimonials */}
             <div className="testimonials">

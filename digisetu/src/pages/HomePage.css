@@ -13,6 +13,12 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.home-page .search-bar input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .home-page .search-bar button {
@@ -20,13 +26,14 @@
     font-size: 16px;
     border: none;
     border-radius: 4px;
-    background-color: #333;
+    background-color: #007bff;
     color: white;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .home-page .search-bar button:hover {
-    background-color: #555;
+    background-color: #0056b3;
 }
 
 .home-page .carousel-container {
@@ -41,12 +48,26 @@
 .home-page .categories h2, .home-page .courses h2, .home-page .languages h2 {
     font-size: 24px;
     margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.home-page .categories h2::after, .home-page .courses h2::after, .home-page .languages h2::after {
+    content: '';
+    width: 50px;
+    height: 3px;
+    background-color: #007bff;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .home-page .category-cards, .home-page .course-cards, .home-page .language-cards {
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .home-page .category-card, .home-page .course-card, .home-page .language-card {
@@ -59,6 +80,12 @@
     background-color: #f9f9f9;
     width: 200px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-page .category-card:hover, .home-page .course-card:hover, .home-page .language-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .home-page .category-icon, .home-page .course-icon, .home-page .language-icon {
@@ -85,6 +112,19 @@
 .home-page .testimonials h2 {
     font-size: 24px;
     margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.home-page .testimonials h2::after {
+    content: '';
+    width: 50px;
+    height: 3px;
+    background-color: #007bff;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .home-page .testimonial-card {
@@ -95,6 +135,12 @@
     width: 80%;
     max-width: 600px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-page .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .home-page .testimonial-card p {
@@ -120,11 +166,125 @@
     font-size: 16px;
     border: none;
     border-radius: 4px;
-    background-color: #333;
+    background-color: #007bff;
     color: white;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .home-page .tutorial-button:hover {
-    background-color: #555;
+    background-color: #0056b3;
+}
+
+.home-page {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    padding: 20px;
+}
+
+.home-page .course-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.home-page .course-title {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.home-page .course-instructor {
+    font-size: 14px;
+    color: #666;
+}
+
+.home-page .course-rating {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.home-page .rating {
+    color: #ffc107;
+    font-weight: bold;
+}
+
+.home-page .reviews {
+    font-size: 12px;
+    color: #666;
+    margin-left: 5px;
+}
+
+.home-page .course-price {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.home-page .current-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.home-page .original-price {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+    margin-left: 10px;
+}
+
+.home-page .bestseller {
+    font-size: 12px;
+    background-color: #ffc107;
+    padding: 2px 5px;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.home-page .language-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.home-page .navigation-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.home-page .nav-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.home-page .nav-button:hover {
+    background-color: #0056b3;
+}
+
+.home-page .chatbot-toggle {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.home-page .chatbot-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.home-page .chatbot-button:hover {
+    background-color: #0056b3;
 }
