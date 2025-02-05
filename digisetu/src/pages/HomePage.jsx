@@ -5,6 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import NavBar from '../components/NavBar';
 import './HomePage.css';
+// import carouselImage from '../assets/carousel-image.jpg'; // Import the image
 
 const categories = [
   { name: "ChatGPT", learners: "4M+" },
@@ -88,6 +89,10 @@ const HomePage = () => {
         // Add logic to handle the search query
     };
 
+    const goToTutorialPage = () => {
+        navigate('/tutorial');
+    };
+
     return (
         <div className="home-page">
             <NavBar />
@@ -102,15 +107,15 @@ const HomePage = () => {
                     <button type="submit">Search</button>
                 </form>
             </div>
-            <h1><marquee>Welcome to the Digital Literacy App</marquee></h1>
-            <p><marquee>Explore various resources and tools to enhance your digital skills</marquee></p>
+            <h1>Welcome to the Digital Literacy App</h1>
+            <p>Explore various resources and tools to enhance your digital skills.</p>
             <button onClick={handleStart}>Get Started</button>
 
             {/* Carousel */}
             <div className="carousel-container">
                 <Carousel showThumbs={false} autoPlay infiniteLoop>
                     <div>
-                        <img src="src/assetsDigital-Literacy-Landscape.png" alt="Slide 1" />
+                        <img src="https://via.placeholder.com/800x300" alt="Slide 1" />
                         <p className="legend">Slide 1</p>
                     </div>
                     <div>
@@ -121,6 +126,10 @@ const HomePage = () => {
                         <img src="https://via.placeholder.com/800x300" alt="Slide 3" />
                         <p className="legend">Slide 3</p>
                     </div>
+                    {/* <div>
+                        <img src={carouselImage} alt="Your Image" />
+                        <p className="legend">Your Image</p>
+                    </div> */}
                 </Carousel>
             </div>
 
@@ -164,6 +173,11 @@ const HomePage = () => {
                         <h3>Spanish</h3>
                     </div>
                 </div>
+            </div>
+
+            {/* Go to Tutorial Page Button */}
+            <div className="tutorial-button-container">
+                <button onClick={goToTutorialPage} className="tutorial-button">Go to Tutorial Page</button>
             </div>
 
             {/* Testimonials */}

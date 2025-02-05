@@ -109,3 +109,22 @@
     background-color: #333;
     color: white;
 }
+
+.home-page .tutorial-button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.home-page .tutorial-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+}
+
+.home-page .tutorial-button:hover {
+    background-color: #555;
+}
