@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.digisetu"
-    compileSdk flutter.compileSdkVersion
+    compileSdk 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -65,5 +65,5 @@ flutter {
 }
 
 dependencies {
-   
+    // classpath 'com.android.tools.build:gradle:8.1.0'
 }
