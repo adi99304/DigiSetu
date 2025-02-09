@@ -34,6 +34,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: 0.19.0
+  url_launcher: ^6.0.20
   
   showcaseview: ^4.0.1
   
@@ -53,7 +54,10 @@ flutter:
   assets:
     - assets/image.jpg
     - assets/profile.jpg
-    
+    - assets/img.png
+    - assets/NameField.png
+
+
 
   uses-material-design: true  
 

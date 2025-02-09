@@ -4,6 +4,9 @@ import 'splash.dart'; // Import the splash screen
 import 'categories.dart';
 import 'profile.dart';
 import 'login.dart'; // Import the login page
+import 'subsidy_simulation1.dart' ; // Use alias for subsidy_simulation1
+import 'subsidy_simulation2.dart' as sim2; // Use alias for subsidy_simulation2
+import 'subsidy_simulation3.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,10 +27,14 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomeScreen(), // Define the home screen route
         '/categories': (context) => CategoriesPage(),
         '/profile': (context) => ProfilePage(),
+        '/subsidy': (context) => SubsidySimulation(), // Define subsidy simulation 1 route using alias
+        '/subsidy2': (context) => const sim2.SubsidySimulation2(), // Define subsidy simulation 2 route using alias
+        // '/subsidy3': (context) => const SubsidySimulation3(), // Assuming SubsidySimulation3 is another screen
       },
     );
   }
 }
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -67,63 +74,63 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: _isSearching
             ? TextField(
-                controller: _searchController,
-                decoration: InputDecoration(
-                  hintText: 'Search...',
-                  border: InputBorder.none,
-                ),
-                autofocus: true,
-              )
+          controller: _searchController,
+          decoration: InputDecoration(
+            hintText: 'Search...',
+            border: InputBorder.none,
+          ),
+          autofocus: true,
+        )
             : Row(
-                children: [
-                  Text(
-                    "DigiSetu",
-                    style: TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold),
+          children: [
+            Text(
+              "DigiSetu",
+              style: TextStyle(
+                  color: Colors.blue, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(width: 20),
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _isSearching = true;
+                  });
+                },
+                child: Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  SizedBox(width: 20),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _isSearching = true;
-                        });
-                      },
-                      child: Container(
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          children: [
-                            SizedBox(width: 10),
-                            Icon(Icons.search, color: Colors.blue),
-                            SizedBox(width: 10),
-                            Text(
-                              'Search...',
-                              style: TextStyle(color: Colors.blue),
-                            ),
-                          ],
-                        ),
+                  child: Row(
+                    children: [
+                      SizedBox(width: 10),
+                      Icon(Icons.search, color: Colors.blue),
+                      SizedBox(width: 10),
+                      Text(
+                        'Search...',
+                        style: TextStyle(color: Colors.blue),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
+            ),
+          ],
+        ),
         backgroundColor: Colors.white,
         actions: _isSearching
             ? [
-                IconButton(
-                  icon: Icon(Icons.close, color: Colors.blue),
-                  onPressed: () {
-                    setState(() {
-                      _isSearching = false;
-                      _searchController.clear();
-                    });
-                  },
-                ),
-              ]
+          IconButton(
+            icon: Icon(Icons.close, color: Colors.blue),
+            onPressed: () {
+              setState(() {
+                _isSearching = false;
+                _searchController.clear();
+              });
+            },
+          ),
+        ]
             : null,
       ),
       drawer: Drawer(
@@ -185,6 +192,13 @@ class _HomeScreenState extends State<HomeScreen> {
               title: Text('Help'),
               onTap: () {
                 Navigator.pushReplacementNamed(context, '/profile');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.monetization_on),
+              title: Text('Subsidy Simulation'),
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/subsidy');
               },
             ),
           ],
