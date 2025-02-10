@@ -1,3 +1,5 @@
+import 'package:digisetu/home_page.dart';
+import 'package:digisetu/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 
@@ -35,7 +37,7 @@ class CategoriesPage extends StatelessWidget {
         onTap: (index) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => HomeScreen()),
+            MaterialPageRoute(builder: (context) => HomePage()),
           );
         },
       ),

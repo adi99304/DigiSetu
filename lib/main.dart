@@ -1,12 +1,16 @@
+import 'package:digisetu/email_sign_up_simulation.dart';
+import 'package:digisetu/email_simulation.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'splash.dart'; // Import the splash screen
+import 'splash.dart';
 import 'categories.dart';
 import 'profile.dart';
-import 'login.dart'; // Import the login page
-import 'subsidy_simulation1.dart' ; // Use alias for subsidy_simulation1
-import 'subsidy_simulation2.dart' as sim2; // Use alias for subsidy_simulation2
+import 'login.dart';
+import 'subsidy_simulation1.dart';
+import 'subsidy_simulation2.dart' as sim2;
 import 'subsidy_simulation3.dart';
+import 'upi_tutorial.dart';
+import 'upi_selection.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,22 +23,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/splash', // Set the initial route to the splash screen
+      initialRoute: '/splash',
       routes: {
-        '/splash': (context) =>
-            SplashScreen(), // Define the splash screen route
-        '/': (context) => LoginPage(), // Define the login page route
-        '/home': (context) => HomeScreen(), // Define the home screen route
+        '/splash': (context) => SplashScreen(),
+        '/': (context) => LoginPage(),
+        '/home': (context) => HomeScreen(),
         '/categories': (context) => CategoriesPage(),
         '/profile': (context) => ProfilePage(),
-        '/subsidy': (context) => SubsidySimulation(), // Define subsidy simulation 1 route using alias
-        '/subsidy2': (context) => const sim2.SubsidySimulation2(), // Define subsidy simulation 2 route using alias
-        // '/subsidy3': (context) => const SubsidySimulation3(), // Assuming SubsidySimulation3 is another screen
+        '/subsidy': (context) => SubsidySimulation(),
+        '/subsidy2': (context) => const sim2.SubsidySimulation2(),
+        // '/email_tutorial': (context) => EmailTutorial(), // Added Email Tutorial Route
+        // '/email_tutorial': (context) => EmailTutorial(),
+        '/email_simulation': (context) => EmailSimulation(),  // Register new route
+        '/upi_tutorial': (context) => const UPITutorialScreen(), // Define UPI tutorial screen route
+        '/upi': (context) => const UPISelectionScreen(), // Define UPI selection screen route
       },
     );
   }
 }
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -54,10 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     switch (index) {
       case 0:
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
-        );
+        Navigator.pushReplacementNamed(context, '/home');
         break;
       case 1:
         Navigator.pushReplacementNamed(context, '/categories');
@@ -152,18 +155,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ListTile(
               leading: Icon(Icons.leaderboard),
               title: Text('Leaderboard'),
-              onTap: () {
-                // Add your navigation logic here
-              },
+              onTap: () {},
             ),
             ListTile(
               leading: Icon(Icons.school),
               title: Text('Courses'),
               onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                );
+                Navigator.pushReplacementNamed(context, '/home');
               },
             ),
             ListTile(
@@ -201,6 +199,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.pushReplacementNamed(context, '/subsidy');
               },
             ),
+            ListTile(
+              leading: Icon(Icons.email),
+              title: Text('Email Simulation'), // Added Email Tutorial Option
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/email_simulation');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.email),
+              title: Text('Email Sign-Up Simulation'), // Added Email Tutorial Option
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/email_sign_up_simulation');
+              },
+            ),
           ],
         ),
       ),
@@ -227,6 +239,43 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+// Email Tutorial Screen
+// class EmailTutorial extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Email Tutorial"),
+//         backgroundColor: Colors.blue,
+//       ),
+//       body: Center(
+//         child: Padding(
+//           padding: const EdgeInsets.all(16.0),
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Icon(Icons.email, size: 100, color: Colors.blue),
+//               SizedBox(height: 20),
+//               Text(
+//                 "Learn how to send and receive emails!",
+//                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+//                 textAlign: TextAlign.center,
+//               ),
+//               SizedBox(height: 20),
+//               ElevatedButton(
+//                 onPressed: () {
+//                   // Add an interactive tutorial here
+//                 },
+//                 child: Text("Start Tutorial"),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class HomePage extends StatelessWidget {
   @override
@@ -359,3 +408,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
