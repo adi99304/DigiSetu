@@ -200,6 +200,13 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             ListTile(
+              leading: Icon(Icons.monetization_on),
+              title: Text('UPI'),
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/upi');
+              },
+            ),
+            ListTile(
               leading: Icon(Icons.email),
               title: Text('Email Simulation'), // Added Email Tutorial Option
               onTap: () {
