@@ -1,20 +1,21 @@
 import 'package:digisetu/categories.dart';
+import 'package:digisetu/chatbot_page.dart';
 import 'package:digisetu/email_sign_up_simulation.dart';
 import 'package:digisetu/email_simulation.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'splash.dart';
-
+import 'package:digisetu/tutorial_page.dart';
 import 'profile.dart';
 import 'login.dart';
 import 'subsidy_simulation1.dart';
 import 'subsidy_simulation2.dart' as sim2;
-// import 'subsidy_simulation3.dart';
 import 'subsidy_simulation4.dart';
 import 'subsidy_simulation5.dart';
 import 'upi_tutorial.dart';
 import 'upi_selection.dart';
+import 'home_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,6 +29,15 @@ class MyApp extends StatelessWidget {
     return ShowCaseWidget(
       builder: (context) => MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: Colors.white,
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            iconTheme: IconThemeData(color: Colors.blue),
+          ),
+        ),
         initialRoute: '/splash',
         routes: {
           '/splash': (context) => SplashScreen(),
@@ -41,7 +51,8 @@ class MyApp extends StatelessWidget {
           '/email_simulation': (context) => EmailSimulation(),
           '/upi_tutorial': (context) => const UPITutorialScreen(),
           '/upi': (context) => const UPISelectionScreen(),
-          '/categories': (context) => CategoriesPage(), // Add Categories route
+          '/categories': (context) => CategoriesPage(),
+          'chatbot': (context) => const ChatbotPage(),
         },
       ),
     );
@@ -68,9 +79,6 @@ class _HomeScreenState extends State<HomeScreen> {
       case 0:
         Navigator.pushReplacementNamed(context, '/home');
         break;
-      // case 1:
-      //   Navigator.pushReplacementNamed(context, '/categories');
-      //   break;
       case 1:
         Navigator.pushReplacementNamed(context, '/profile');
         break;
@@ -92,12 +100,15 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             : Row(
                 children: [
-                  Text(
-                    "DigiSetu",
-                    style: TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(width: 20),
+                  // Text(
+                  //   "DigiSetu",
+                  //   style: TextStyle(
+                  //     color: Colors.blue,
+                  //     fontWeight: FontWeight.bold,
+                  //     fontSize: 22,
+                  //   ),
+                  // ),
+                  // SizedBox(width: 20),
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
@@ -114,11 +125,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Row(
                           children: [
                             SizedBox(width: 10),
-                            Icon(Icons.search, color: Colors.blue),
+                            Icon(Icons.search, color: Colors.blue.shade800),
                             SizedBox(width: 10),
                             Text(
                               'Search...',
-                              style: TextStyle(color: Colors.blue),
+                              style: TextStyle(color: Colors.blue.shade800),
                             ),
                           ],
                         ),
@@ -127,11 +138,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-        backgroundColor: Colors.white,
         actions: _isSearching
             ? [
                 IconButton(
-                  icon: Icon(Icons.close, color: Colors.blue),
+                  icon: Icon(Icons.close, color: Colors.blue.shade800),
                   onPressed: () {
                     setState(() {
                       _isSearching = false;
@@ -143,91 +153,56 @@ class _HomeScreenState extends State<HomeScreen> {
             : null,
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
+        child: Column(
+          children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.blue.shade800,
               ),
-              child: Text(
-                'Menu',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  'Menu',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.leaderboard),
-              title: Text('Leaderboard'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: Icon(Icons.school),
-              title: Text('Courses'),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/home');
+            ...[
+              {'icon': Icons.leaderboard, 'text': 'Leaderboard', 'route': ''},
+              {'icon': Icons.school, 'text': 'Courses', 'route': '/home'},
+              {
+                'icon': Icons.category,
+                'text': 'Categories',
+                'route': '/categories'
               },
-            ),
-            ListTile(
-              leading: Icon(Icons.category),
-              title: Text('Categories'),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/categories');
+              {'icon': Icons.person, 'text': 'Profile', 'route': '/profile'},
+              {'icon': Icons.info, 'text': 'About us', 'route': '/categories'},
+              {'icon': Icons.help, 'text': 'Help', 'route': '/profile'},
+              {
+                'icon': Icons.monetization_on,
+                'text': 'Subsidy Simulation',
+                'route': '/subsidy'
               },
-            ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Profile'),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/profile');
+              {
+                'icon': Icons.email,
+                'text': 'Email Simulation',
+                'route': '/email_simulation'
               },
-            ),
-            ListTile(
-              leading: Icon(Icons.info),
-              title: Text('About us'),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/categories');
+              {
+                'icon': Icons.payment,
+                'text': 'UPI Simulation',
+                'route': '/upi_tutorial'
               },
-            ),
-            ListTile(
-              leading: Icon(Icons.help),
-              title: Text('Help'),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/profile');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.monetization_on),
-              title: Text('Subsidy Simulation'),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/subsidy');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.monetization_on),
-              title: Text('UPI'),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/upi');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.email),
-              title: Text('Email Simulation'), // Added Email Tutorial Option
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/email_simulation');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.email),
-              title: Text(
-                  'Email Sign-Up Simulation'), // Added Email Tutorial Option
-              onTap: () {
-                Navigator.pushReplacementNamed(
-                    context, '/email_sign_up_simulation');
-              },
-            ),
+            ].map((item) => ListTile(
+                  leading: Icon(item['icon'] as IconData),
+                  title: Text(item['text'] as String),
+                  onTap: () => Navigator.pushReplacementNamed(
+                      context, item['route'] as String),
+                )),
           ],
         ),
       ),
@@ -238,187 +213,14 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.school),
             label: 'Courses',
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.category),
-          //   label: 'Categories',
-          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.blue.shade800,
         onTap: _onItemTapped,
-      ),
-    );
-  }
-}
-
-// Email Tutorial Screen
-// class EmailTutorial extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Email Tutorial"),
-//         backgroundColor: Colors.blue,
-//       ),
-//       body: Center(
-//         child: Padding(
-//           padding: const EdgeInsets.all(16.0),
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               Icon(Icons.email, size: 100, color: Colors.blue),
-//               SizedBox(height: 20),
-//               Text(
-//                 "Learn how to send and receive emails!",
-//                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//                 textAlign: TextAlign.center,
-//               ),
-//               SizedBox(height: 20),
-//               ElevatedButton(
-//                 onPressed: () {
-//                   // Add an interactive tutorial here
-//                 },
-//                 child: Text("Start Tutorial"),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                height: 30,
-                child: Text(
-                  "Popular courses",
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold),
-                ),
-              )
-            ],
-          ),
-          SizedBox(
-            height: 200,
-            child: CarouselSlider(
-              options: CarouselOptions(
-                height: 200,
-                autoPlay: true,
-                enlargeCenterPage: true,
-              ),
-              items: List.generate(5, (index) {
-                return Container(
-                  margin: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Slide ${index + 1}",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
-                    ),
-                  ),
-                );
-              }),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Categories",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 150,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        child: Container(
-                          width: 150,
-                          child: Center(child: Text("Category ${index + 1}")),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(height: 16),
-                Text(
-                  "Popular Courses",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 150,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        child: Container(
-                          width: 150,
-                          child: Center(child: Text("Course ${index + 1}")),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(height: 16),
-                Text(
-                  "YouTube Tutorials",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 150,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        child: Container(
-                          width: 150,
-                          child: Center(child: Text("Tutorial ${index + 1}")),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: FloatingActionButton(
-                onPressed: () {
-                  // Add your chatbot or help functionality here
-                },
-                child: Icon(Icons.chat),
-                backgroundColor: Colors.blue,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

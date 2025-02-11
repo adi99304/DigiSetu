@@ -1,3 +1,4 @@
+import 'package:digisetu/main.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'upi_check_balance.dart';
@@ -15,7 +16,8 @@ class UPITutorialScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'UPI Tutorial',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 22, color: Colors.white),
         ),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
@@ -28,6 +30,19 @@ class UPITutorialScreen extends StatelessWidget {
         ),
         centerTitle: true,
         elevation: 4,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+              (Route<dynamic> route) => false,
+            );
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
@@ -40,7 +55,8 @@ class UPITutorialScreen extends StatelessWidget {
               icon: Icons.account_balance_wallet,
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const UPICheckBalanceScreen()),
+                MaterialPageRoute(
+                    builder: (context) => const UPICheckBalanceScreen()),
               ),
               hintText: 'Tap here to check balance!',
             ),
@@ -51,7 +67,8 @@ class UPITutorialScreen extends StatelessWidget {
               icon: Icons.history,
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const UPICheckHistoryScreen()),
+                MaterialPageRoute(
+                    builder: (context) => const UPICheckHistoryScreen()),
               ),
               hintText: 'Tap here to view history!',
             ),
@@ -62,13 +79,12 @@ class UPITutorialScreen extends StatelessWidget {
               icon: Icons.person,
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const UPICheckUPIIDScreen()),
+                MaterialPageRoute(
+                    builder: (context) => const UPICheckUPIIDScreen()),
               ),
               hintText: 'Tap here to check your UPI ID!',
             ),
-
             const Spacer(),
-
             Pulse(
               duration: const Duration(seconds: 1),
               infinite: true,
@@ -78,7 +94,8 @@ class UPITutorialScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const UPISelectionScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const UPISelectionScreen()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -91,7 +108,10 @@ class UPITutorialScreen extends StatelessWidget {
                   ),
                   child: const Text(
                     'Proceed to UPI Payment',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                 ),
               ),
@@ -103,23 +123,40 @@ class UPITutorialScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildStepTile(BuildContext context, {required int stepNumber, required String title, required IconData icon, required VoidCallback onTap, required String hintText}) {
+  Widget _buildStepTile(BuildContext context,
+      {required int stepNumber,
+      required String title,
+      required IconData icon,
+      required VoidCallback onTap,
+      required String hintText}) {
     return FadeInLeft(
-      duration: Duration(milliseconds: 400 + (stepNumber * 150)), // Staggered fade-in for smooth effect
+      duration: Duration(
+          milliseconds:
+              400 + (stepNumber * 150)), // Staggered fade-in for smooth effect
       child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: ListTile(
-          contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
           leading: CircleAvatar(
             backgroundColor: Colors.deepPurple,
             child: Text(
               stepNumber.toString(),
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+              style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
           ),
-          title: Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-          subtitle: Text(hintText, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.deepPurple)),
+          title: Text(title,
+              style:
+                  const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+          subtitle: Text(hintText,
+              style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple)),
           trailing: Icon(icon, color: Colors.deepPurple, size: 30),
           onTap: onTap,
         ),
