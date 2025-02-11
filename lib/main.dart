@@ -2,13 +2,16 @@ import 'package:digisetu/email_sign_up_simulation.dart';
 import 'package:digisetu/email_simulation.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:showcaseview/showcaseview.dart';
 import 'splash.dart';
 import 'categories.dart';
 import 'profile.dart';
 import 'login.dart';
 import 'subsidy_simulation1.dart';
 import 'subsidy_simulation2.dart' as sim2;
-import 'subsidy_simulation3.dart';
+// import 'subsidy_simulation3.dart';
+import 'subsidy_simulation4.dart';
+import 'subsidy_simulation5.dart';
 import 'upi_tutorial.dart';
 import 'upi_selection.dart';
 
@@ -21,26 +24,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/splash',
-      routes: {
-        '/splash': (context) => SplashScreen(),
-        '/': (context) => LoginPage(),
-        '/home': (context) => HomeScreen(),
-        // '/categories': (context) => CategoriesPage(),
-        '/profile': (context) => ProfilePage(),
-        '/subsidy': (context) => SubsidySimulation(),
-        '/subsidy2': (context) => const sim2.SubsidySimulation2(),
-        // '/email_tutorial': (context) => EmailTutorial(), // Added Email Tutorial Route
-        // '/email_tutorial': (context) => EmailTutorial(),
-        '/email_simulation': (context) =>
-            EmailSimulation(), // Register new route
-        '/upi_tutorial': (context) =>
-            const UPITutorialScreen(), // Define UPI tutorial screen route
-        '/upi': (context) =>
-            const UPISelectionScreen(), // Define UPI selection screen route
-      },
+    return ShowCaseWidget(
+      builder: (context) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/splash',
+        routes: {
+          '/splash': (context) => SplashScreen(),
+          '/': (context) => LoginPage(),
+          '/home': (context) => HomeScreen(),
+          '/profile': (context) => ProfilePage(),
+          '/subsidy': (context) => SubsidySimulation(),
+          '/subsidy4': (context) => SubsidySimulation4(),
+          '/subsidy5': (context) => SubsidySimulation5(),
+          '/subsidy2': (context) => const sim2.SubsidySimulation2(),
+          '/email_simulation': (context) => EmailSimulation(),
+          '/upi_tutorial': (context) => const UPITutorialScreen(),
+          '/upi': (context) => const UPISelectionScreen(),
+          '/categories': (context) => CategoriesPage(), // Add Categories route
+        },
+      ),
     );
   }
 }

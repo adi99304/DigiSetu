@@ -200,16 +200,30 @@ class _SubsidySimulationState extends State<SubsidySimulation2> {
               onPressed: _goToPreviousPage,
               child: const Text('Back'),
             ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     if (_formKey.currentState!.validate()) {
+            //       ScaffoldMessenger.of(context).showSnackBar(
+            //         const SnackBar(content: Text('Form submitted successfully')),
+            //       );
+            //     }
+            //   },
+            //   child: const Text('Submit'),
+            // ),
             ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Form submitted successfully')),
                   );
+
+                  // Navigate to /subsidy4
+                  Navigator.pushNamed(context, '/subsidy4');
                 }
               },
               child: const Text('Submit'),
             ),
+
           ],
         ),
       ],
