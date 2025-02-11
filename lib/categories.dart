@@ -1,52 +1,67 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
 
 class CategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final categories = [
+      {'name': 'Healthcare', 'icon': Icons.local_hospital},
+      {'name': 'Education', 'icon': Icons.school},
+      {'name': 'Finances', 'icon': Icons.attach_money},
+      {'name': 'Cars', 'icon': Icons.directions_car},
+    ];
+
     return Scaffold(
       appBar: AppBar(
+        title: Text('Categories'),
+        backgroundColor: Colors.blue,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.blue),
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
+            Navigator.pushReplacementNamed(context, '/home');
+          },
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+          ),
+          itemCount: categories.length,
+          itemBuilder: (context, index) {
+            return Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              elevation: 5,
+              child: InkWell(
+                onTap: () {
+                  // Handle category tap
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      categories[index]['icon'] as IconData?,
+                      size: 50,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      categories[index]['name'] as String,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             );
           },
         ),
-        title: Text(
-          "Categories",
-          style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.white,
-      ),
-      body: Center(
-        child: Text('Categories Page'),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Courses',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.category),
-            label: 'Categories',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: 1,
-        selectedItemColor: Colors.blue,
-        onTap: (index) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => HomePage()),
-          );
-        },
       ),
     );
   }

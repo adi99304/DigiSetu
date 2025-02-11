@@ -1,10 +1,11 @@
+import 'package:digisetu/categories.dart';
 import 'package:digisetu/email_sign_up_simulation.dart';
 import 'package:digisetu/email_simulation.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'splash.dart';
-import 'categories.dart';
+
 import 'profile.dart';
 import 'login.dart';
 import 'subsidy_simulation1.dart';
@@ -173,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
               leading: Icon(Icons.category),
               title: Text('Categories'),
               onTap: () {
-                // Navigator.pushReplacementNamed(context, '/categories');
+                Navigator.pushReplacementNamed(context, '/categories');
               },
             ),
             ListTile(
