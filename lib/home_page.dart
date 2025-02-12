@@ -35,6 +35,7 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 20),
 
             // Featured Courses Carousel
+            // Featured Courses Carousel
             CarouselSlider(
               options: CarouselOptions(
                 height: 220,
@@ -46,31 +47,41 @@ class HomePage extends StatelessWidget {
               items: List.generate(5, (index) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [Colors.blue.shade300, Colors.blue.shade800],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      // Course Image
+                      Image.asset(
+                        'assets/poo.png', // Replace with actual image paths
+                        fit: BoxFit.cover,
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.blue.shade100,
-                          blurRadius: 10,
-                          spreadRadius: 2,
-                        )
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Featured Course ${index + 1}",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                      // Gradient Overlay for Better Readability
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          gradient: LinearGradient(
+                            colors: [Colors.black.withOpacity(0.4), Colors.transparent],
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                          ),
                         ),
                       ),
-                    ),
+                      // Course Title
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Text(
+                            "Featured Course ${index + 1}",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 );
               }),
