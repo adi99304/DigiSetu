@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
                     children: [
                       // Course Image
                       Image.asset(
-                        'assets/poo.png', // Replace with actual image paths
+                        'assets/poo (2).png', // Replace with actual image paths
                         fit: BoxFit.cover,
                       ),
                       // Gradient Overlay for Better Readability
