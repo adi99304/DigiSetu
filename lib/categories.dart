@@ -5,41 +5,20 @@ class CategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categories = [
-      {
-        'name': 'Healthcare',
-        'icon': Icons.local_hospital,
-        'courses': ['Course 1', 'Course 2', 'Course 3']
-      },
-      {
-        'name': 'Education',
-        'icon': Icons.school,
-        'courses': ['Course 1', 'Course 2', 'Course 3']
-      },
+      {'name': 'Healthcare', 'icon': Icons.local_hospital, 'courses': null},
+      {'name': 'Education', 'icon': Icons.school, 'courses': null},
       {
         'name': 'Finances',
         'icon': Icons.attach_money,
-        'courses': ['Course 1', 'Course 2', 'Course 3']
+        'courses': [
+          'Budgeting Basics',
+          'Understanding Loans',
+          'Investment Strategies'
+        ]
       },
-      {
-        'name': 'Social Media',
-        'icon': Icons.people,
-        'courses': ['Course 1', 'Course 2', 'Course 3']
-      },
-      {
-        'name': 'Technology',
-        'icon': Icons.computer,
-        'courses': ['Course 1', 'Course 2', 'Course 3']
-      },
-      // {
-      //   'name': 'Government Services',
-      //   'icon': Icons.account_balance,
-      //   'courses': ['Course 1', 'Course 2', 'Course 3']
-      // },
-      {
-        'name': 'Online Safety',
-        'icon': Icons.security,
-        'courses': ['Course 1', 'Course 2', 'Course 3']
-      },
+      {'name': 'Social Media', 'icon': Icons.people, 'courses': null},
+      {'name': 'Technology', 'icon': Icons.computer, 'courses': null},
+      {'name': 'Online Safety', 'icon': Icons.security, 'courses': null},
     ];
 
     return Scaffold(
@@ -61,8 +40,6 @@ class CategoriesPage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // Gradient Background
-
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -89,7 +66,12 @@ class CategoriesPage extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => TutorialPage(
                           categoryName: categories[index]['name'] as String,
-                          courses: categories[index]['courses'] as List<String>,
+                          predefinedCourses: categories[index]['courses'] !=
+                                  null
+                              ? (categories[index]['courses'] as List<dynamic>)
+                                  .map((e) => e.toString())
+                                  .toList()
+                              : ['No courses available'],
                         ),
                       ),
                     );

@@ -16,8 +16,14 @@ import 'subsidy_simulation5.dart';
 import 'upi_tutorial.dart';
 import 'upi_selection.dart';
 import 'home_page.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+void main() async {
+  await Supabase.initialize(
+    url: 'https://yjimdxjdehalrgdsyifx.supabase.co',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlqaW1keGpkZWhhbHJnZHN5aWZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkzODIzNTIsImV4cCI6MjA1NDk1ODM1Mn0.CMQ4hYbOLxHl27WgU891Ls_hOmWY-vggQ57vOYt1eB8',
+  );
   runApp(MyApp());
 }
 

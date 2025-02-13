@@ -42,6 +42,7 @@ dependencies:
   showcaseview: ^4.0.1
   google_generative_ai: ^0.4.6
   tutorial_coach_mark: ^1.2.6
+  supabase_flutter: ^2.8.3
 
 
 dev_dependencies:
