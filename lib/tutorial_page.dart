@@ -1,10 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'coursedetailpage.dart'; // Import CourseDetailPage
 
 class TutorialPage extends StatefulWidget {
   final String categoryName;
-  final List<String> predefinedCourses; // Added predefined course list
+  final List<String> predefinedCourses;
 
   TutorialPage({required this.categoryName, required this.predefinedCourses});
 
@@ -27,19 +28,19 @@ class _TutorialPageState extends State<TutorialPage> {
     try {
       final response = await supabase
           .from('courses')
-          .select('course_name')
+          .select('course_name') // Fetching course names
           .eq('category', widget.categoryName);
 
       setState(() {
         courses = response.isNotEmpty
             ? response.map<String>((c) => c['course_name'] as String).toList()
-            : widget.predefinedCourses; // Fallback to predefined courses
+            : widget.predefinedCourses;
         isLoading = false;
       });
     } catch (e) {
       print("Error fetching courses: $e");
       setState(() {
-        courses = widget.predefinedCourses; // Fallback in case of an error
+        courses = widget.predefinedCourses;
         isLoading = false;
       });
     }
@@ -60,10 +61,9 @@ class _TutorialPageState extends State<TutorialPage> {
               title: Text(
                 '${widget.categoryName} Courses',
                 style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               leading: IconButton(
                 icon: Icon(Icons.arrow_back, color: Colors.white),
@@ -75,7 +75,6 @@ class _TutorialPageState extends State<TutorialPage> {
       ),
       body: Stack(
         children: [
-          // **Gradient Background**
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -85,8 +84,6 @@ class _TutorialPageState extends State<TutorialPage> {
               ),
             ),
           ),
-
-          // **Loading or Course List**
           Padding(
             padding: const EdgeInsets.only(top: 90.0),
             child: isLoading
@@ -102,34 +99,40 @@ class _TutorialPageState extends State<TutorialPage> {
                         physics: BouncingScrollPhysics(),
                         itemCount: courses.length,
                         itemBuilder: (context, index) {
-                          return Container(
-                            margin: EdgeInsets.symmetric(
-                                horizontal: 18, vertical: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(18),
-                              color: Colors.white.withOpacity(0.15),
-                            ),
-                            child: ListTile(
-                              contentPadding: EdgeInsets.all(16),
-                              leading: Icon(Icons.play_circle_fill,
-                                  color: Colors.white, size: 32),
-                              title: Text(
-                                courses[index],
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
+                          return GestureDetector(
+                            onTap: () {
+                              // Navigate to CourseDetailPage with course name
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CourseDetailPage(
+                                      courseName: courses[index]),
                                 ),
+                              );
+                            },
+                            child: Container(
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 18, vertical: 10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(18),
+                                color: Colors.white.withOpacity(0.15),
                               ),
-                              subtitle: Text(
-                                "Tap to explore",
-                                style: TextStyle(color: Colors.white70),
+                              child: ListTile(
+                                contentPadding: EdgeInsets.all(16),
+                                leading: Icon(Icons.play_circle_fill,
+                                    color: Colors.white, size: 32),
+                                title: Text(
+                                  courses[index],
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white),
+                                ),
+                                subtitle: Text("Tap to explore",
+                                    style: TextStyle(color: Colors.white70)),
+                                trailing: Icon(Icons.arrow_forward_ios,
+                                    color: Colors.white),
                               ),
-                              trailing: Icon(Icons.arrow_forward_ios,
-                                  color: Colors.white),
-                              onTap: () {
-                                // Handle course tap
-                              },
                             ),
                           );
                         },
