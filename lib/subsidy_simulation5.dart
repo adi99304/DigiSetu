@@ -29,11 +29,17 @@ class _SubsidySimulation5State extends State<SubsidySimulation5> {
   void _validateCaptcha() {
     if (_captchaController.text.trim().toUpperCase() == _generatedCaptcha) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('CAPTCHA Verified Successfully ✅')),
+        const SnackBar(content: Text('CAPTCHA Verified Successfully ✅')),
       );
+
+      // Wait for 1 second before navigating to the home page
+      Future.delayed(const Duration(seconds: 1), () {
+        Navigator.pushReplacementNamed(context, '/home');
+      });
+
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Incorrect CAPTCHA ❌. Please try again.')),
+        const SnackBar(content: Text('Incorrect CAPTCHA ❌. Please try again.')),
       );
       _generateCaptcha();
       _captchaController.clear();
