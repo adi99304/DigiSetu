@@ -106,14 +106,14 @@ class _HomeScreenState extends State<HomeScreen> {
               )
             : Row(
                 children: [
-                  // Text(
-                  //   "DigiSetu",
-                  //   style: TextStyle(
-                  //     color: Colors.blue,
-                  //     fontWeight: FontWeight.bold,
-                  //     fontSize: 22,
-                  //   ),
-                  // ),
+                  Text(
+                    "DigiSetu",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22,
+                    ),
+                  ),
                   // SizedBox(width: 20),
                   Expanded(
                     child: GestureDetector(

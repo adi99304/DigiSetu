@@ -34,60 +34,70 @@ class HomePage extends StatelessWidget {
 
             SizedBox(height: 20),
 
-            // Featured Courses Carousel
-            // Featured Courses Carousel
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 220,
-                autoPlay: true,
-                enlargeCenterPage: true,
-                aspectRatio: 16 / 9,
-                enableInfiniteScroll: true,
-              ),
-              items: List.generate(5, (index) {
-                return ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      // Course Image
-                      Image.asset(
-                        'assets/poo (2).png', // Replace with actual image paths
-                        fit: BoxFit.cover,
-                      ),
-                      // Gradient Overlay for Better Readability
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          gradient: LinearGradient(
-                            colors: [Colors.black.withOpacity(0.4), Colors.transparent],
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                          ),
-                        ),
-                      ),
-                      // Course Title
-                      Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Text(
-                            "Featured Course ${index + 1}",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              }),
+            // Featured Courses Carousel with multiple images in each scroll
+          CarouselSlider(
+            options: CarouselOptions(
+              height: 220,
+              autoPlay: true,
+              enlargeCenterPage: true,
+              aspectRatio: 16 / 9,
+              enableInfiniteScroll: true,
+              viewportFraction: 0.8,
             ),
+            items: List.generate(4, (index) {
+              // You can replace 'image1.png', 'image2.png', etc., with your actual image names
+              List<String> imagePaths = [
+                'assets/carousel/8.png',
+                'assets/carousel/9.png',
+                'assets/carousel/10.png',
+                'assets/carousel/11.png',
+                // ' 'assets/images/image5.png
+              ];
 
-            SizedBox(height: 20),
+              return ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    // Course Image
+                    Image.asset(
+                      imagePaths[index], // Access image paths dynamically
+                      fit: BoxFit.cover,
+                    ),
+                    // Gradient Overlay for Better Readability
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        gradient: LinearGradient(
+                          colors: [Colors.black.withOpacity(0.4), Colors.transparent],
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                        ),
+                      ),
+                    ),
+                    // Course Title
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        // child: Text(
+                        //   "Featured Course ${index + 1}",
+                        //   style: TextStyle(
+                        //     fontSize: 20,
+                        //     fontWeight: FontWeight.bold,
+                        //     color: Colors.white,
+                        //   ),
+                        // ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
+            ),
+          ),
+
+          SizedBox(height: 20),
 
             // Top Picks Section
             Padding(
@@ -161,7 +171,7 @@ class HomePage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   child: Card(
                     elevation: 5,
                     shape: RoundedRectangleBorder(
