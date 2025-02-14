@@ -28,7 +28,8 @@ class _ChatbotPageState extends State<ChatbotPage> {
   void initState() {
     super.initState();
     // Initialize the Gemini model with the API key
-    _model = GenerativeModel(model: 'gemini-pro', apiKey: 'AIzaSyDaFZCfF651AJCUH39Nb2tE4VQNViezPhk');
+    _model = GenerativeModel(
+        model: 'gemini-pro', apiKey: 'AIzaSyDaFZCfF651AJCUH39Nb2tE4VQNViezPhk');
 
     // Initialize speech-to-text
     _speech = stt.SpeechToText();
@@ -88,7 +89,8 @@ class _ChatbotPageState extends State<ChatbotPage> {
       _speech.stop();
       setState(() {
         _isListening = false;
-        _controller.text = _spokenText; // Set the spoken text to the input field
+        _controller.text =
+            _spokenText; // Set the spoken text to the input field
       });
     }
   }
@@ -188,7 +190,8 @@ class _ChatbotPageState extends State<ChatbotPage> {
                   duration: Duration(milliseconds: 300),
                   curve: Curves.easeInOut,
                   margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                  alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
+                  alignment:
+                      isUser ? Alignment.centerRight : Alignment.centerLeft,
                   child: Container(
                     padding: EdgeInsets.all(12),
                     decoration: BoxDecoration(
@@ -257,7 +260,8 @@ class _ChatbotPageState extends State<ChatbotPage> {
                       decoration: InputDecoration(
                         hintText: 'Type your message...',
                         border: InputBorder.none,
-                        contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                       ),
                     ),
                   ),

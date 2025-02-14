@@ -1,4 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:digisetu/chatbot_page.dart';
+import 'package:digisetu/subsidy_simulation1.dart'; // Import the subsidy page
+import 'package:digisetu/upi_tutorial.dart'; // Import the subsidy page
+import 'package:digisetu/email_simulation.dart'; // Import the subsidy page
+
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -12,8 +18,6 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 40),
-
-            // Header with Icon
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -31,75 +35,75 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-
             SizedBox(height: 20),
+            CarouselSlider(
+              options: CarouselOptions(
+                height: 220,
+                autoPlay: true,
+                enlargeCenterPage: true,
+                aspectRatio: 16 / 9,
+                enableInfiniteScroll: true,
+                viewportFraction: 0.8,
+              ),
+              items: List.generate(4, (index) {
+                List<String> imagePaths = [
+                  'assets/carousel/8.png',
+                  'assets/carousel/9.png',
+                  'assets/carousel/10.png',
+                  'assets/carousel/11.png',
+                ];
 
-            // Featured Courses Carousel with multiple images in each scroll
-          CarouselSlider(
-            options: CarouselOptions(
-              height: 220,
-              autoPlay: true,
-              enlargeCenterPage: true,
-              aspectRatio: 16 / 9,
-              enableInfiniteScroll: true,
-              viewportFraction: 0.8,
-            ),
-            items: List.generate(4, (index) {
-              // You can replace 'image1.png', 'image2.png', etc., with your actual image names
-              List<String> imagePaths = [
-                'assets/carousel/8.png',
-                'assets/carousel/9.png',
-                'assets/carousel/10.png',
-                'assets/carousel/11.png',
-                // ' 'assets/images/image5.png
-              ];
-
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    // Course Image
-                    Image.asset(
-                      imagePaths[index], // Access image paths dynamically
-                      fit: BoxFit.cover,
-                    ),
-                    // Gradient Overlay for Better Readability
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        gradient: LinearGradient(
-                          colors: [Colors.black.withOpacity(0.4), Colors.transparent],
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
+                return GestureDetector(
+                  onTap: () {
+                    if (imagePaths[index] == 'assets/carousel/9.png') {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SubsidySimulation()),
+                      );
+                    } else if (imagePaths[index] == 'assets/carousel/10.png') {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UPITutorialScreen()),
+                      );
+                    } else if (imagePaths[index] == 'assets/carousel/11.png') {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EmailSimulation()),
+                      );
+                    }
+                  },
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Image.asset(
+                          imagePaths[index],
+                          fit: BoxFit.cover,
                         ),
-                      ),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.black.withOpacity(0.4),
+                                Colors.transparent
+                              ],
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    // Course Title
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15),
-                        // child: Text(
-                        //   "Featured Course ${index + 1}",
-                        //   style: TextStyle(
-                        //     fontSize: 20,
-                        //     fontWeight: FontWeight.bold,
-                        //     color: Colors.white,
-                        //   ),
-                        // ),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }
+                  ),
+                );
+              }),
             ),
-          ),
-
-          SizedBox(height: 20),
-
-            // Top Picks Section
+            SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
@@ -107,10 +111,7 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
-
             SizedBox(height: 10),
-
-            // Horizontal Card Slider for Top Picks
             SizedBox(
               height: 150,
               child: ListView.builder(
@@ -149,10 +150,7 @@ class HomePage extends StatelessWidget {
                 },
               ),
             ),
-
             SizedBox(height: 20),
-
-            // Popular Courses Section
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
@@ -160,10 +158,7 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
-
             SizedBox(height: 10),
-
-            // Course Cards with Neumorphic Design
             ListView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
@@ -171,7 +166,7 @@ class HomePage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   child: Card(
                     elevation: 5,
                     shape: RoundedRectangleBorder(
@@ -206,7 +201,6 @@ class HomePage extends StatelessWidget {
                 );
               },
             ),
-
             SizedBox(height: 20),
           ],
         ),

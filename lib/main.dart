@@ -17,6 +17,7 @@ import 'upi_tutorial.dart';
 import 'upi_selection.dart';
 import 'home_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'auth_page.dart';
 
 void main() async {
   await Supabase.initialize(
@@ -59,6 +60,8 @@ class MyApp extends StatelessWidget {
           '/upi': (context) => const UPISelectionScreen(),
           '/categories': (context) => CategoriesPage(),
           'chatbot': (context) => const ChatbotPage(),
+          '/auth': (context) => LoginPage1(),
+          '/register': (context) => RegistrationPage(),
         },
       ),
     );
